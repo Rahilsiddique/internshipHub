@@ -1,4 +1,4 @@
-# shopping-cart
+# shopping cart
 
 - [ ] list of internships 
 - [ ] filter internships 
