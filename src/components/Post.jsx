@@ -1,13 +1,22 @@
 import React from "react";
 
-const Post = () => {
+const Post = ({ company, stipend, jobTitle, technologies }) => {
+  console.log(technologies);
   return (
     <div className="card w-full bg-base-100 shadow-xl">
       <div className="card-body">
-        <h2 className="card-title">Shoes!</h2>
-        <p>If a dog chews shoes whose shoes does he choose?</p>
+        <h2 className="card-title">
+          {jobTitle}
+        </h2>
+        <div className="flex gap-4 flex-wrap">
+          {technologies.map(e =>
+            <div className="badge-lg badge">
+              {e}
+            </div>
+          )}
+        </div>
         <div className="card-actions justify-end">
-          <button className="btn btn-primary">Buy Now</button>
+          <button className="btn btn-primary">Apply</button>
         </div>
       </div>
     </div>
