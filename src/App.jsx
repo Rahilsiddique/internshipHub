@@ -1,12 +1,10 @@
-import { useContext } from "react";
 import Navbar from "./components/Navbar";
 import Post from "./components/Post";
 import SearchBox from "./components/SearchBox";
-import { GlobalContext } from "./context/Context";
+import { internContext } from "./context/Context";
 
 function App() {
-  const { internships } = useContext(GlobalContext);
-  console.log(internships);
+  const { internships } = internContext();
   return (
     <div className="text-xl">
       <Navbar />

@@ -1,9 +1,22 @@
 import React from "react";
 
-const Post = ({ company, stipend, jobTitle, technologies }) => {
-  console.log(technologies);
+const Post = ({
+  company,
+  stipend,
+  jobTitle,
+  technologies,
+  duration,
+  internshipType,
+  experienceLevel
+}) => {
+  const postContent = {
+    Stipend: stipend,
+    Duration: duration,
+    Type: internshipType,
+    Level: experienceLevel
+  };
   return (
-    <div className="card w-full bg-base-100 shadow-xl">
+    <div className="card w-full bg-base-100 shadow-xl border border-primary">
       <div className="card-body">
         <h2 className="card-title">
           {jobTitle}
@@ -12,6 +25,18 @@ const Post = ({ company, stipend, jobTitle, technologies }) => {
           {technologies.map(e =>
             <div className="badge-lg badge">
               {e}
+            </div>
+          )}
+        </div>
+        <div className="grid md:grid-cols-4 border">
+          {Object.keys(postContent).map(e =>
+            <div className="border-r">
+              <div className="border-b text-2xl p-3 font-bold">
+                {e}
+              </div>
+              <div className="p-3">
+                {postContent[e]}
+              </div>
             </div>
           )}
         </div>
