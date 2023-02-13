@@ -5,7 +5,7 @@ import { RxCross2 } from "react-icons/rx"
 
 const SearchBox = () => {
 
-  const { value, setValue, selectedTech, setSelectedTech } =  useContext(GlobalContext)
+  const { value, setValue, selectedTech, setSelectedTech, internships } =  useContext(GlobalContext)
 
   function handleSelection(selection){
     setSelectedTech(p => ([...p,selection]))
@@ -40,10 +40,12 @@ const SearchBox = () => {
           </div>
         )}
       </div>
-      <div className="flex gap-4 flex-wrap">{selectedTech.map(e => <div className="badge badge-info badge-lg badge-secondary flex gap-2">
+      <div className="flex gap-4 flex-wrap justify-between w-full">{selectedTech.map(e => <div className="badge badge-info badge-lg badge-secondary flex gap-2">
         <RxCross2 size={20} className="cursor-pointer" onClick={() => handleDelete(e)}/>
         {e}
-      </div>)}</div>
+      </div>)}
+      <div className="flex justify-end">{internships.length}</div>
+      </div>
     </>
   );
 };

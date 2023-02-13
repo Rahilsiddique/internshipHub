@@ -28,13 +28,15 @@ const internships = [...internshipsOg];
 const Context = ({ children }) => {
   const [value, setValue] = useState("");
   const [selectedTech, setSelectedTech] = useState([]);
-  internships.map(e => {
-    if (!!selectedTech) return;
-    const ye = e.technologies.map(pt => {
-      return selectedTech.filter(ut => ut !== pt);
-    });
-    console.log(ye);
-  });
+
+  const del = e => {
+    selectedTech.map(se =>
+      e.technologies.map(
+        te => (se === te ? console.log(se, te) : console.log("nothing"))
+      )
+    );
+  };
+  internships.map(e => del(e));
   return (
     <GlobalContext.Provider
       value={{ internships, value, setValue, selectedTech, setSelectedTech }}
