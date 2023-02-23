@@ -28,7 +28,7 @@ const Post = ({
             </div>
           )}
         </div>
-        <div className="grid md:grid-cols-4 border">
+        <div className="grid sm:grid-cols-4 border grid-cols-2">
           {Object.keys(postContent).map(e =>
             <div className="border-r">
               <div className="border-b text-2xl p-3 font-bold">

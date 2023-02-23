@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import { faker } from "@faker-js/faker";
 import { softwareTechnologies } from "../utils/techs";
 
@@ -23,23 +23,28 @@ const internshipsOg = [...Array(30)].map(() => ({
   )
 }));
 
-const internships = [...internshipsOg];
+const internshipsT = [...internshipsOg];
 
 const Context = ({ children }) => {
+  let internships = [...internshipsOg];
+
   const [value, setValue] = useState("");
   const [selectedTech, setSelectedTech] = useState([]);
+  const [tempI, setTempI] = useState([...internships]);
 
-  const del = e => {
-    selectedTech.map(se =>
-      e.technologies.map(
-        te => (se === te ? console.log(se, te) : console.log("nothing"))
-      )
-    );
-  };
-  internships.map(e => del(e));
+  function filterTings() {
+    for (let i = 0; i < tempI; i++) {
+      for (let j = 0; j < tempI[i].technologies; j++) {
+        console.log(i);
+      }
+    }
+  }
+
+  filterTings();
+
   return (
     <GlobalContext.Provider
-      value={{ internships, value, setValue, selectedTech, setSelectedTech }}
+      value={{ tempI, value, setValue, selectedTech, setSelectedTech }}
     >
       {children}
     </GlobalContext.Provider>
