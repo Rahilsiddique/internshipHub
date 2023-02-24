@@ -1,3 +1,4 @@
+import Filter from "./components/Filter";
 import Navbar from "./components/Navbar";
 import Post from "./components/Post";
 import SearchBox from "./components/SearchBox";
@@ -13,7 +14,9 @@ function App() {
           <SearchBox />
           {tempI.map(value => <Post {...value} />)}
         </div>
-        <div className="col-span-1">filter</div>
+        <div className="col-span-1">
+          <Filter />
+        </div>
       </div>
     </div>
   );

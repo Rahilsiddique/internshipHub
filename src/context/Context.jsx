@@ -23,8 +23,6 @@ const internshipsOg = [...Array(30)].map(() => ({
   )
 }));
 
-const internshipsT = [...internshipsOg];
-
 const Context = ({ children }) => {
   let internships = [...internshipsOg];
 
@@ -32,15 +30,26 @@ const Context = ({ children }) => {
   const [selectedTech, setSelectedTech] = useState([]);
   const [tempI, setTempI] = useState([...internships]);
 
-  function filterTings() {
-    for (let i = 0; i < tempI; i++) {
-      for (let j = 0; j < tempI[i].technologies; j++) {
-        console.log(i);
-      }
-    }
-  }
-
-  filterTings();
+  useEffect(
+    () => {
+      const temp = [];
+      internships.forEach(e => {
+        selectedTech.forEach(st => {
+          if (JSON.stringify(e.technologies).includes(JSON.stringify(st))) {
+            temp.push(e);
+          }
+        });
+      });
+      setTempI(() => {
+        if (temp.length === 0) {
+          return internships;
+        } else {
+          return temp;
+        }
+      });
+    },
+    [selectedTech]
+  );
 
   return (
     <GlobalContext.Provider
