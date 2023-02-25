@@ -1,19 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext } from "react";
+import { GlobalContext } from "../context/Context";
 
 const Filter = () => {
-  const [filter, setFilter] = useState({
-    internShipType: "",
-    level: "",
-    period: ""
-  });
+  const { filter, setFilter, setFilterTrue } = useContext(GlobalContext);
 
   function handleApply(e) {
     e.preventDefault();
-    console.log(filter);
+    setFilterTrue(p => !p);
   }
 
   function handleClear(e) {
     e.preventDefault();
+    setFilterTrue(p => !p);
     setFilter(() => ({
       internShipType: "",
       level: "",
@@ -57,20 +55,20 @@ const Filter = () => {
       <div>
         <input
           type="range"
-          min="0"
+          min="1"
           max="12"
           value={filter.period === "" ? 0 : filter.period}
           className="range"
-          step="3"
+          step="1"
           onChange={doYourThing}
           name="period"
         />
         <div className="w-full flex justify-between text-xs px-2">
-          <span>1</span>
-          <span>3</span>
-          <span>6</span>
-          <span>9</span>
-          <span>12</span>
+          {[...Array(12)].map((_, i) =>
+            <span key={i}>
+              {i}
+            </span>
+          )}
         </div>
       </div>
       <button className="btn" onClick={handleApply}>

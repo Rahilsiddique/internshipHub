@@ -29,6 +29,12 @@ const Context = ({ children }) => {
   const [value, setValue] = useState("");
   const [selectedTech, setSelectedTech] = useState([]);
   const [tempI, setTempI] = useState([...internships]);
+  const [filter, setFilter] = useState({
+    internShipType: "",
+    level: "",
+    period: ""
+  });
+  const [filterTrue, setFilterTrue] = useState(false);
 
   useEffect(
     () => {
@@ -51,9 +57,42 @@ const Context = ({ children }) => {
     [selectedTech]
   );
 
+  useEffect(
+    () => {
+      const temp = [];
+      internships.forEach(e => {
+        if (
+          e.internshipType === filter.internShipType &&
+          e.experienceLevel === filter.level &&
+          e.duration <= filter.period
+        ) {
+          temp.push(e);
+        }
+      });
+      setTempI(() => {
+        if (temp.length === 0) {
+          return internships;
+        } else {
+          return temp;
+        }
+      });
+    },
+    [filterTrue]
+  );
+
   return (
     <GlobalContext.Provider
-      value={{ tempI, value, setValue, selectedTech, setSelectedTech }}
+      value={{
+        tempI,
+        value,
+        setValue,
+        selectedTech,
+        setSelectedTech,
+        filter,
+        setFilter,
+        filterTrue,
+        setFilterTrue
+      }}
     >
       {children}
     </GlobalContext.Provider>
